@@ -60,7 +60,7 @@ var atlImages = [
 	'http://2.bp.blogspot.com/--XZFLg6LSq8/U4YV65sb2MI/AAAAAAAAO8A/cFl-Em5Zb0A/s1600/Sawfish_Atlanta_Aquarium.jpg',
 	'https://upload.wikimedia.org/wikipedia/commons/a/a3/Piedmont-park-urban-park.jpg',
 	'http://www.atlantaga.gov/modules/showimage.aspx?imageid=2404',
-	'http://wallpapercave.com/wp/Sd3rbbg.jpg'
+	// 'http://wallpapercave.com/wp/Sd3rbbg.jpg'
 ];
 
 
@@ -120,9 +120,6 @@ var About = React.createClass({
 				<div>
 					{displayPhotos}
 				</div>
-				 {/*<div className="imgs">
-				 imagesToDisplay
-				 </div>*/}
 			</div>
 		)
 	}
