@@ -73,7 +73,9 @@ function Images(props){
 
 function Home(props){
 	return (
-		<h1>A page about Atlanta!</h1>
+		<div>
+			<h1>A page about Atlanta!</h1>
+		</div>
 	)
 };
 
@@ -98,12 +100,16 @@ var BootstrapNavBar = React.createClass({
   }
 });
 
-
 var About = React.createClass({
-	// var images = (this.props.routes[1].photos)
 	render: function(){
+		var arrayOfURLs = (this.props.routes[1].photos);
+		var displayPhotos = arrayOfURLs.map(function(photo, index){
+			return(
+				<img src={photo} key={index} />
+			)
+		});
 		return(
-			// <div>
+			<div>
 				<div className="desc">
 					Atlanta is the capital of and the most populous city in the U.S. state of Georgia,
 					with an estimated 2015 population of 463,878.[6] Atlanta is the cultural and economic
@@ -111,14 +117,13 @@ var About = React.createClass({
 					metropolitan area in the United States.[13] Atlanta is the county seat of Fulton County,
 					and a small portion of the city extends eastward into DeKalb County.
 				</div>
-				// <div className="images">
-				// {images.map(function(photo, index){
-				// 	return(
-				// 			<img src="photo">)
-				// 	})
-				// }
-				// </div>
-			// </div>
+				<div>
+					{displayPhotos}
+				</div>
+				 {/*<div className="imgs">
+				 imagesToDisplay
+				 </div>*/}
+			</div>
 		)
 	}
 });
