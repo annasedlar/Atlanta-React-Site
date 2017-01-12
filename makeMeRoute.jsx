@@ -1,19 +1,3 @@
-var atlImages = [
-	'http://i.huffpost.com/gen/1716876/images/o-ATLANTA-TRAFFIC-facebook.jpg',
-	'http://2.bp.blogspot.com/--XZFLg6LSq8/U4YV65sb2MI/AAAAAAAAO8A/cFl-Em5Zb0A/s1600/Sawfish_Atlanta_Aquarium.jpg',
-	'https://upload.wikimedia.org/wikipedia/commons/a/a3/Piedmont-park-urban-park.jpg'
-]
-
-var About = React.createClass({
-	render: function(){
-		return(
-			<div>
-				Atlanta is the capital of and the most populous city in the U.S. state of Georgia, with an estimated 2015 population of 463,878.[6] Atlanta is the cultural and economic center of the Atlanta metropolitan area, home to 5,710,795 people and the ninth largest metropolitan area in the United States.[13] Atlanta is the county seat of Fulton County, and a small portion of the city extends eastward into DeKalb County.
-			</div>
-		)
-	}
-})
-
 function MayorMessage(props){
 	return(
 		<div id="ctl00_content_Screen">
@@ -31,9 +15,12 @@ function MayorMessage(props){
 			By every measure, we are a city on the rise. As we see more world-class developments and continued growth, I am proud to share it with you all.
 			<p>Sincerely,</p>
 			<p>Mayor Kasim Reed</p>
+			<div>
+				{props.photo}
+			</div>
 		</div>
 	)
-}
+};
 
 var Atlanta = React.createClass({
 	getInitialState: function() {
@@ -68,30 +55,39 @@ var Atlanta = React.createClass({
 	}
 });
 
+var atlImages = [
+	'http://i.huffpost.com/gen/1716876/images/o-ATLANTA-TRAFFIC-facebook.jpg',
+	'http://2.bp.blogspot.com/--XZFLg6LSq8/U4YV65sb2MI/AAAAAAAAO8A/cFl-Em5Zb0A/s1600/Sawfish_Atlanta_Aquarium.jpg',
+	'https://upload.wikimedia.org/wikipedia/commons/a/a3/Piedmont-park-urban-park.jpg',
+	'http://www.atlantaga.gov/modules/showimage.aspx?imageid=2404',
+	'http://wallpapercave.com/wp/Sd3rbbg.jpg'
+];
+
+
 function Images(props){
 	// Map through images
 	return(
-		<p>Images go here as props</p>
+		<p>{props.routes[1].photos}</p>
 	)
-}
+};
 
 function Home(props){
 	return (
 		<h1>A page about Atlanta!</h1>
 	)
-}
+};
 
 var BootstrapNavBar = React.createClass({
   render: function(){
     return(
-		<nav className="navbar navbar-default navbar-fixed-top">
+		<nav className="navbar navbar-default">
 		  <div className="container-fluid">
 		    <div className="navbar-header">
 		      <a className="navbar-brand" href="#">ATL Nav:</a>
 		    </div>
 		    <ul className="nav navbar-nav">
 		    	<li><ReactRouter.IndexLink to="/">Home</ReactRouter.IndexLink></li>
-		      	<li><ReactRouter.Link to="/one">One</ReactRouter.Link></li>
+		      	<li><ReactRouter.Link to="/About">About</ReactRouter.Link></li>
 		      	<li><ReactRouter.Link to="/two">Two</ReactRouter.Link></li>
 		      	<li><ReactRouter.Link to="/three">Three</ReactRouter.Link></li>
 		      	<li><ReactRouter.Link to="/four">Four</ReactRouter.Link></li>
@@ -103,12 +99,26 @@ var BootstrapNavBar = React.createClass({
 });
 
 
-var One = React.createClass({
+var About = React.createClass({
+	// var images = (this.props.routes[1].photos)
 	render: function(){
 		return(
-			<div> 
-				<p>This is page ONE</p>
-			</div>
+			// <div>
+				<div className="desc">
+					Atlanta is the capital of and the most populous city in the U.S. state of Georgia,
+					with an estimated 2015 population of 463,878.[6] Atlanta is the cultural and economic
+					center of the Atlanta metropolitan area, home to 5,710,795 people and the ninth largest
+					metropolitan area in the United States.[13] Atlanta is the county seat of Fulton County,
+					and a small portion of the city extends eastward into DeKalb County.
+				</div>
+				// <div className="images">
+				// {images.map(function(photo, index){
+				// 	return(
+				// 			<img src="photo">)
+				// 	})
+				// }
+				// </div>
+			// </div>
 		)
 	}
 });
@@ -148,11 +158,9 @@ var App = React.createClass({
 		return(
 			<div>
 				<BootstrapNavBar />
-				<div className="main">
-					<h1>ATLANTA</h1>
-				</div>
 				<div className="content">
-				{this.props.children}
+					<h1>ATLANTA</h1>
+					{this.props.children}
 				</div>
 			</div>
 
@@ -165,7 +173,7 @@ ReactDOM.render(
 	<ReactRouter.Router>
 		<ReactRouter.Route path="/" component={App} >
 			<ReactRouter.IndexRoute component={Home} />
-			<ReactRouter.Route path="/one" activeClassName="active" component={One} />
+			<ReactRouter.Route path="/About" activeClassName="active" component={About} photos={atlImages}/>
 			<ReactRouter.Route path="/two" activeClassName="active" component={Two} />
 			<ReactRouter.Route path="/three" activeClassName="active" component={Three} />
 			<ReactRouter.Route path="/four" activeClassName="active" component={Four} />
